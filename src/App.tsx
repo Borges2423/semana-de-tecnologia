@@ -230,7 +230,83 @@ function App() {
             </div>
           </div>
         </section>
+
+        <section id="patrocinadores" className="secao secao-clara">
+          <div className="container">
+            <h2 className="secao-titulo">Patrocinadores</h2>
+            <p className="secao-subtitulo">Empresas que apoiam o evento</p>
+
+            <div className="lista-patrocinadores">
+              <article className="card-patrocinador">
+                <span className="patrocinador-logo logo-ouro">CT</span>
+                <div>
+                  <h3 className="patrocinador-nome">CodeTech Sistemas</h3>
+                  <p className="patrocinador-nivel">Patrocínio Ouro</p>
+                </div>
+                <a href="#patrocinadores" className="patrocinador-link">
+                  Site ↗
+                </a>
+              </article>
+
+              <article className="card-patrocinador">
+                <span className="patrocinador-logo logo-prata">NV</span>
+                <div>
+                  <h3 className="patrocinador-nome">Nuvem Verde Cloud</h3>
+                  <p className="patrocinador-nivel">Patrocínio Prata</p>
+                </div>
+                <a href="#patrocinadores" className="patrocinador-link">
+                  Site ↗
+                </a>
+              </article>
+
+              <article className="card-patrocinador">
+                <span className="patrocinador-logo logo-bronze">BD</span>
+                <div>
+                  <h3 className="patrocinador-nome">ByteDev Escola</h3>
+                  <p className="patrocinador-nivel">Patrocínio Bronze</p>
+                </div>
+                <a href="#patrocinadores" className="patrocinador-link">
+                  Site ↗
+                </a>
+              </article>
+            </div>
+          </div>
+        </section>
       </main>
+
+      <footer id="contato" className="rodape">
+        <div className="container rodape-colunas">
+          <div>
+            <h2 className="rodape-titulo">SemanaTec 2026</h2>
+            <p className="rodape-descricao">Evento gratuito de tecnologia com palestras para estudantes e profissionais.</p>
+          </div>
+
+          <div>
+            <h2 className="rodape-titulo">Contato</h2>
+            <address className="rodape-contato">
+              <a href="mailto:contato@semanatec.com">contato@semanatec.com</a>
+              <span>Auditório Central</span>
+            </address>
+          </div>
+
+          <div>
+            <h2 className="rodape-titulo">Redes sociais</h2>
+            <div className="redes">
+              <a href="#contato" className="rede">
+                IG
+              </a>
+              <a href="#contato" className="rede">
+                IN
+              </a>
+              <a href="#contato" className="rede">
+                YT
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <p className="copyright">© 2026 SemanaTec</p>
+      </footer>
     </>
   )
 }
