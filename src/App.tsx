@@ -10,6 +10,8 @@ import { patrocinadores } from './data/patrocinadores'
 
 function App() {
   const [favoritos, setFavoritos] = useState<number[]>([])
+  const [menuAberto, setMenuAberto] = useState(false)
+  const [temaEscuro, setTemaEscuro] = useState(false)
 
   function alternarFavorito(id: number) {
     if (favoritos.includes(id)) {
@@ -19,9 +21,22 @@ function App() {
     }
   }
 
+  function alternarMenu() {
+    setMenuAberto(!menuAberto)
+  }
+
+  function alternarTema() {
+    setTemaEscuro(!temaEscuro)
+  }
+
   return (
-    <>
-      <Cabecalho />
+    <div className={temaEscuro ? 'pagina tema-escuro' : 'pagina'}>
+      <Cabecalho
+        menuAberto={menuAberto}
+        temaEscuro={temaEscuro}
+        aoAlternarMenu={alternarMenu}
+        aoAlternarTema={alternarTema}
+      />
 
       <main>
         <Destaque />
@@ -30,7 +45,7 @@ function App() {
       </main>
 
       <Rodape />
-    </>
+    </div>
   )
 }
 
