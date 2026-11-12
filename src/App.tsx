@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Cabecalho from './components/Cabecalho'
 import Destaque from './components/Destaque'
@@ -9,9 +9,13 @@ import { palestras } from './data/palestras'
 import { patrocinadores } from './data/patrocinadores'
 
 function App() {
-  const [favoritos, setFavoritos] = useState<number[]>([])
+  const [favoritos, setFavoritos] = useState<number[]>(() => JSON.parse(localStorage.getItem('favoritos') ?? '[]'))
   const [menuAberto, setMenuAberto] = useState(false)
   const [temaEscuro, setTemaEscuro] = useState(false)
+
+  useEffect(() => {
+    localStorage.setItem('favoritos', JSON.stringify(favoritos))
+  }, [favoritos])
 
   function alternarFavorito(id: number) {
     if (favoritos.includes(id)) {
