@@ -420,6 +420,12 @@ button {
   color: var(--cor-primaria);
 }
 
+.botao-favoritar.favoritada {
+  border-color: var(--cor-primaria);
+  background-color: var(--cor-primaria);
+  color: var(--cor-branco);
+}
+
 @media (min-width: 768px) {
   .lista-palestras {
     grid-template-columns: repeat(2, 1fr);
