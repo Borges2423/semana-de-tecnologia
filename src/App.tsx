@@ -5,13 +5,19 @@ import Destaque from './components/Destaque'
 import Patrocinadores from './components/Patrocinadores'
 import Programacao from './components/Programacao'
 import Rodape from './components/Rodape'
-import { palestras } from './data/palestras'
+import { buscarPalestras } from './data/palestras'
 import { patrocinadores } from './data/patrocinadores'
+import type { Palestra } from './data/tipos'
 
 function App() {
+  const [palestras, setPalestras] = useState<Palestra[]>([])
   const [favoritos, setFavoritos] = useState<number[]>(() => JSON.parse(localStorage.getItem('favoritos') ?? '[]'))
   const [menuAberto, setMenuAberto] = useState(false)
   const [temaEscuro, setTemaEscuro] = useState(false)
+
+  useEffect(() => {
+    buscarPalestras().then((dados) => setPalestras(dados))
+  }, [])
 
   useEffect(() => {
     localStorage.setItem('favoritos', JSON.stringify(favoritos))
