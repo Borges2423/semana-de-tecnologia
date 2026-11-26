@@ -4,11 +4,12 @@ import CardPalestra from './CardPalestra'
 type ProgramacaoProps = {
   palestras: Palestra[]
   carregando: boolean
+  erro: string
   favoritos: number[]
   aoFavoritar: (id: number) => void
 }
 
-function Programacao({ palestras, carregando, favoritos, aoFavoritar }: ProgramacaoProps) {
+function Programacao({ palestras, carregando, erro, favoritos, aoFavoritar }: ProgramacaoProps) {
   return (
     <section id="programacao" className="secao">
       <div className="container">
@@ -19,6 +20,13 @@ function Programacao({ palestras, carregando, favoritos, aoFavoritar }: Programa
           <div className="estado-carregando">
             <span className="carregando-icone" aria-hidden="true"></span>
             <p>Carregando a programação...</p>
+          </div>
+        )}
+
+        {erro && (
+          <div className="estado-erro" role="alert">
+            <p className="estado-erro-titulo">Ops! Algo deu errado.</p>
+            <p>{erro}</p>
           </div>
         )}
 

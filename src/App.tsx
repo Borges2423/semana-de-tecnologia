@@ -12,6 +12,7 @@ import type { Palestra } from './data/tipos'
 function App() {
   const [palestras, setPalestras] = useState<Palestra[]>([])
   const [carregando, setCarregando] = useState(true)
+  const [erro, setErro] = useState('')
   const [favoritos, setFavoritos] = useState<number[]>(() => JSON.parse(localStorage.getItem('favoritos') ?? '[]'))
   const [menuAberto, setMenuAberto] = useState(false)
   const [temaEscuro, setTemaEscuro] = useState(false)
@@ -19,6 +20,7 @@ function App() {
   useEffect(() => {
     buscarPalestras()
       .then((dados) => setPalestras(dados))
+      .catch(() => setErro('Não foi possível carregar a programação. Verifique sua conexão e recarregue a página.'))
       .finally(() => setCarregando(false))
   }, [])
 
@@ -56,6 +58,7 @@ function App() {
         <Programacao
           palestras={palestras}
           carregando={carregando}
+          erro={erro}
           favoritos={favoritos}
           aoFavoritar={alternarFavorito}
         />
