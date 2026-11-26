@@ -457,9 +457,42 @@ button {
   color: var(--cor-branco);
 }
 
+.estado-carregando {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--espaco-m);
+  padding: var(--espaco-gg) var(--espaco-m);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  background-color: var(--cor-superficie);
+  color: var(--cor-texto-suave);
+  text-align: center;
+}
+
+.carregando-icone {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--cor-primaria-clara);
+  border-top-color: var(--cor-primaria);
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (min-width: 768px) {
   .lista-palestras {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .estado-carregando {
+    max-width: 640px;
+    margin: 0 auto;
   }
 }
 

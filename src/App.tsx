@@ -11,12 +11,15 @@ import type { Palestra } from './data/tipos'
 
 function App() {
   const [palestras, setPalestras] = useState<Palestra[]>([])
+  const [carregando, setCarregando] = useState(true)
   const [favoritos, setFavoritos] = useState<number[]>(() => JSON.parse(localStorage.getItem('favoritos') ?? '[]'))
   const [menuAberto, setMenuAberto] = useState(false)
   const [temaEscuro, setTemaEscuro] = useState(false)
 
   useEffect(() => {
-    buscarPalestras().then((dados) => setPalestras(dados))
+    buscarPalestras()
+      .then((dados) => setPalestras(dados))
+      .finally(() => setCarregando(false))
   }, [])
 
   useEffect(() => {
@@ -50,7 +53,12 @@ function App() {
 
       <main>
         <Destaque />
-        <Programacao palestras={palestras} favoritos={favoritos} aoFavoritar={alternarFavorito} />
+        <Programacao
+          palestras={palestras}
+          carregando={carregando}
+          favoritos={favoritos}
+          aoFavoritar={alternarFavorito}
+        />
         <Patrocinadores patrocinadores={patrocinadores} />
       </main>
 
