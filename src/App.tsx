@@ -5,13 +5,24 @@ import Destaque from './components/Destaque'
 import Patrocinadores from './components/Patrocinadores'
 import Programacao from './components/Programacao'
 import Rodape from './components/Rodape'
-import { palestras } from './data/palestras'
+import { buscarPalestras } from './data/palestras'
 import { patrocinadores } from './data/patrocinadores'
+import type { Palestra } from './data/tipos'
 
 function App() {
+  const [palestras, setPalestras] = useState<Palestra[]>([])
+  const [carregando, setCarregando] = useState(true)
+  const [erro, setErro] = useState('')
   const [favoritos, setFavoritos] = useState<number[]>(() => JSON.parse(localStorage.getItem('favoritos') ?? '[]'))
   const [menuAberto, setMenuAberto] = useState(false)
   const [temaEscuro, setTemaEscuro] = useState(false)
+
+  useEffect(() => {
+    buscarPalestras()
+      .then((dados) => setPalestras(dados))
+      .catch(() => setErro('Não foi possível carregar a programação. Verifique sua conexão e recarregue a página.'))
+      .finally(() => setCarregando(false))
+  }, [])
 
   useEffect(() => {
     localStorage.setItem('favoritos', JSON.stringify(favoritos))
@@ -44,7 +55,13 @@ function App() {
 
       <main>
         <Destaque />
-        <Programacao palestras={palestras} favoritos={favoritos} aoFavoritar={alternarFavorito} />
+        <Programacao
+          palestras={palestras}
+          carregando={carregando}
+          erro={erro}
+          favoritos={favoritos}
+          aoFavoritar={alternarFavorito}
+        />
         <Patrocinadores patrocinadores={patrocinadores} />
       </main>
 

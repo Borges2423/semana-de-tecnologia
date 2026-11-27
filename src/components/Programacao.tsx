@@ -3,16 +3,32 @@ import CardPalestra from './CardPalestra'
 
 type ProgramacaoProps = {
   palestras: Palestra[]
+  carregando: boolean
+  erro: string
   favoritos: number[]
   aoFavoritar: (id: number) => void
 }
 
-function Programacao({ palestras, favoritos, aoFavoritar }: ProgramacaoProps) {
+function Programacao({ palestras, carregando, erro, favoritos, aoFavoritar }: ProgramacaoProps) {
   return (
     <section id="programacao" className="secao">
       <div className="container">
         <h2 className="secao-titulo">Programação</h2>
         <p className="secao-subtitulo">Palestras dos 3 dias de evento • Favoritas: {favoritos.length}</p>
+
+        {carregando && (
+          <div className="estado-carregando">
+            <span className="carregando-icone" aria-hidden="true"></span>
+            <p>Carregando a programação...</p>
+          </div>
+        )}
+
+        {erro && (
+          <div className="estado-erro" role="alert">
+            <p className="estado-erro-titulo">Ops! Algo deu errado.</p>
+            <p>{erro}</p>
+          </div>
+        )}
 
         <div className="lista-palestras">
           {palestras.map((palestra) => (
